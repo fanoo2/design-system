@@ -4,7 +4,7 @@
     "target": "ES6",
     "module": "ESNext",
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "../dist",
     "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
