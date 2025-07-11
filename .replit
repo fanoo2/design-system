@@ -1,3 +1,15 @@
 modules = ["nodejs-20"]
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Run Storybook"
+
+[[workflows.workflow]]
+name = "Run Storybook"
+author = 9088213
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run storybook"
