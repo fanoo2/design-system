@@ -14,15 +14,18 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@storybook/react": "^7.6.20",
+    "@storybook/addon-controls": "^7.6.20",
+    "@storybook/addon-docs": "^7.6.20",
+    "@storybook/addon-essentials": "^7.6.20",
     "@storybook/cli": "^7.6.20",
-    "@storybook/addon-docs": "^9.0.16",
+    "@storybook/react": "^7.6.20",
+    "@storybook/react-webpack5": "^7.6.20",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "storybook": "^7.6.20",
     "style-dictionary": "^3.0.0",
-    "typescript": "^5.0.0",
-    "storybook": "^7.6.20"
+    "typescript": "^5.0.0"
   }
 }

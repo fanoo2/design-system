@@ -9,7 +9,7 @@ module.exports = {
   ],
 
   framework: {
-    name: '@storybook/react',
+    name: '@storybook/react-webpack5',
     options: {}
   },
 
