@@ -18,8 +18,17 @@ module.exports = {
   },
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
+    reactDocgen: 'react-docgen-typescript',
+    check: false
   },
+
+  babel: async (options) => ({
+    ...options,
+    presets: [
+      ...options.presets,
+      ['@babel/preset-typescript', { isTSX: true, allExtensions: true }]
+    ]
+  }),
 
   docs: {
     autodocs: true
