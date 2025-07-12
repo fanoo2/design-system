@@ -1,3 +1,4 @@
+
 export const colors = {
   primary: {
     50: '#eff6ff',
@@ -70,7 +71,7 @@ export const colors = {
     700: '#b91c1c',
     800: '#991b1b',
     900: '#7f1d1d',
-  }
+  },
 } as const;
 
 export type ColorScale = typeof colors[keyof typeof colors];
