@@ -17,3 +17,7 @@ args = "npm run storybook"
 [[ports]]
 localPort = 6006
 externalPort = 80
+
+[[ports]]
+localPort = 6007
+externalPort = 3000
