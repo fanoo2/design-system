@@ -27,8 +27,22 @@ jobs:
       - name: Lint with ESLint
         run: npm run lint
         
+      - name: Run unit tests with coverage
+        run: npm run test:coverage
+        
       - name: Build TypeScript
         run: npm run build
         
       - name: Build Storybook (smoke test)
         run: npm run build-storybook
+
+      - name: Run legacy smoke tests
+        run: npm run test:legacy
+        
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: success()
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: design-system-coverage

@@ -23,8 +23,11 @@ jobs:
       - name: Lint code
         run: npm run lint
       
-      - name: Run tests
-        run: npm test
+      - name: Run comprehensive tests
+        run: npm run test:coverage
+      
+      - name: Run legacy tests
+        run: npm run test:legacy
       
       - name: Build package
         run: npm run build
@@ -40,3 +43,18 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Trigger downstream projects
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: fanoo2/downstream-project-example
+          event-type: design-system-updated
+          client-payload: |
+            {
+              "version": "${{ steps.get_version.outputs.VERSION }}",
+              "package": "@fanno/design-system",
+              "tag": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "repository": "${{ github.repository }}"
+            }

@@ -1,7 +1,8 @@
 
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2017",
+    "lib": ["ES2017", "DOM"],
     "module": "CommonJS",
     "declaration": true,
     "outDir": "../dist",
@@ -10,7 +11,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", ".storybook"]
