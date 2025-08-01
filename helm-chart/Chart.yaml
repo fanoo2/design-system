@@ -1,0 +1,14 @@
+apiVersion: v2
+name: design-system
+description: A Helm chart for the design system Storybook application
+version: 0.1.0
+appVersion: "0.1.0"
+type: application
+keywords:
+  - design-system
+  - storybook
+  - ui
+home: https://github.com/fanoo2/design-system
+maintainers:
+  - name: fanoo2
+    url: https://github.com/fanoo2
