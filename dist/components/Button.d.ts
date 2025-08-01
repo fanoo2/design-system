@@ -1,5 +1,5 @@
 import React from 'react';
-interface ButtonProps {
+export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'outline';
     size?: 'small' | 'medium' | 'large';
     children: React.ReactNode;
@@ -7,4 +7,3 @@ interface ButtonProps {
     disabled?: boolean;
 }
 export declare const Button: React.FC<ButtonProps>;
-export default Button;
