@@ -19,16 +19,14 @@ module.exports = {
 
   typescript: {
     reactDocgen: 'react-docgen-typescript',
-    check: false
+    check: false,
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
   },
 
-  babel: async (options) => ({
-    ...options,
-    presets: [
-      ...options.presets,
-      ['@babel/preset-typescript', { isTSX: true, allExtensions: true }]
-    ]
-  }),
+
 
   docs: {
     autodocs: true
