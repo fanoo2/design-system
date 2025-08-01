@@ -1,4 +1,111 @@
-# Design System - Docker & Kubernetes Deployment
+# Design System
+
+A React-based design system with reusable components and design tokens.
+
+## Installation
+
+```bash
+npm install @fanno/design-system
+```
+
+## Usage
+
+### Components
+
+#### Button
+
+```jsx
+import { Button } from '@fanno/design-system';
+
+function App() {
+  return (
+    <div>
+      {/* Basic button */}
+      <Button onClick={() => console.log('clicked')}>
+        Click me
+      </Button>
+
+      {/* Button variants */}
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+
+      {/* Button sizes */}
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
+
+      {/* Disabled button */}
+      <Button disabled>Disabled</Button>
+    </div>
+  );
+}
+```
+
+### Design Tokens
+
+#### Colors
+
+```jsx
+import { colors } from '@fanno/design-system';
+
+// Access color tokens
+const primaryColor = colors.primary[500]; // "#3b82f6"
+const neutralColor = colors.neutral[100]; // "#f5f5f5"
+
+// Use in custom styles
+const customStyles = {
+  backgroundColor: colors.primary[500],
+  color: colors.neutral[50]
+};
+```
+
+## API Reference
+
+### Button Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary' \| 'outline'` | `'primary'` | Visual style variant |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Button size |
+| `children` | `React.ReactNode` | - | Button content |
+| `onClick` | `() => void` | - | Click handler |
+| `disabled` | `boolean` | `false` | Whether button is disabled |
+
+### Colors
+
+Available color scales:
+- `colors.primary` - Primary brand colors (50-900)
+- `colors.neutral` - Neutral/gray colors (50-900)
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Setup
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd design-system
+
+# Install dependencies
+npm install
+
+# Build the design system
+npm run build
+
+# Run tests
+npm test
+
+# Start Storybook for development
+npm run storybook
+```
+
+## Docker & Kubernetes Deployment
 
 This repository contains a design system with Storybook documentation that can be deployed using Docker and Kubernetes via Helm.
 
