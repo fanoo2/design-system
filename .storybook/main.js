@@ -2,21 +2,13 @@
 module.exports = {
   stories: ['../design-system/src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-controls',
-    '@storybook/addon-docs'
+    '@storybook/addon-essentials'
   ],
   framework: {
     name: '@storybook/react-webpack5',
     options: {}
   },
-  core: {
-    builder: 'webpack5'
-  },
   typescript: {
     reactDocgen: 'react-docgen-typescript'
-  },
-  docs: {
-    autodocs: true
   }
 };
