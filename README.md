@@ -203,3 +203,52 @@ npm run build
 # Lint the code
 npm run lint
 ```
+
+## CI/CD & Publishing
+
+### GitHub Actions Workflows
+
+This repository uses GitHub Actions for continuous integration and publishing:
+
+- **CI Workflow** (`.github/workflows/ci.yml`): Runs on every push and pull request to main branch
+  - Lints code with zero warnings tolerance (`--max-warnings=0`)
+  - Runs unit tests with coverage enforcement (minimum 80% coverage required)
+  - Builds TypeScript components
+  - Builds Storybook for smoke testing
+  - Runs legacy tests
+
+- **Publish Workflow** (`.github/workflows/publish.yml`): Triggers on semantic version tags (e.g., `v1.0.0`)
+  - Validates package.json version matches git tag
+  - Runs full test suite and build
+  - Publishes to npm registry
+  - Triggers downstream project updates
+
+### Required Secrets
+
+To enable automatic publishing and downstream project notifications, configure these GitHub repository secrets:
+
+| Secret | Description | Required For |
+|--------|-------------|--------------|
+| `NPM_TOKEN` | npm registry authentication token with publish access to `@fanno/design-system` | Publishing to npm |
+| `REPO_DISPATCH_TOKEN` | GitHub personal access token with `repo` scope for triggering repository dispatch events | Downstream project notifications |
+
+#### Setting up NPM_TOKEN:
+1. Log in to [npmjs.com](https://npmjs.com)
+2. Go to Account Settings → Access Tokens
+3. Generate a new token with "Automation" type
+4. Add the token as `NPM_TOKEN` in GitHub repository secrets
+
+#### Setting up REPO_DISPATCH_TOKEN:
+1. Generate a GitHub Personal Access Token with `repo` scope
+2. Add the token as `REPO_DISPATCH_TOKEN` in GitHub repository secrets
+
+### Publishing Process
+
+1. Update `package.json` version following semantic versioning
+2. Commit and push changes
+3. Create and push a git tag matching the package.json version:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+4. The publish workflow will automatically validate, build, test, and publish the package

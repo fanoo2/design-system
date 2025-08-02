@@ -36,6 +36,19 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       
+      - name: Validate package.json version matches git tag
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+          echo "Package version: $PACKAGE_VERSION"
+          echo "Tag version: $TAG_VERSION"
+          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
+            echo "Error: package.json version ($PACKAGE_VERSION) does not match git tag version ($TAG_VERSION)"
+            echo "Please update package.json version to match the git tag before publishing"
+            exit 1
+          fi
+          echo "Version validation passed: $PACKAGE_VERSION"
+      
       - name: Update package version
         run: npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
       

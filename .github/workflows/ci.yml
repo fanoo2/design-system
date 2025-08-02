@@ -24,10 +24,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Lint with ESLint
+      - name: Lint with ESLint (fail on warnings)
         run: npm run lint
         
-      - name: Run unit tests with coverage
+      - name: Run unit tests with coverage (fail below 80% threshold)
         run: npm run test:coverage
         
       - name: Build TypeScript
