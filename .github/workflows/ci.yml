@@ -39,6 +39,9 @@ jobs:
       - name: Run legacy smoke tests
         run: npm run test:legacy
         
+      - name: Run end-to-end smoke tests
+        run: npm run test:smoke
+        
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
         if: success()

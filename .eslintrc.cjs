@@ -12,7 +12,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.js', 'node_modules', '.storybook'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', '.storybook'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,

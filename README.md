@@ -60,6 +60,78 @@ const customStyles = {
 };
 ```
 
+## Environment Variables
+
+This design system supports configuration through environment variables for development and deployment scenarios:
+
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `STORYBOOK_PORT` | Port for Storybook development server | `6006` | No |
+| `NODE_ENV` | Environment mode (development/production) | `development` | No |
+| `VITE_API_URL` | API base URL for components that make API calls | `http://localhost:3000` | No |
+
+### Setting Environment Variables
+
+**Development (.env file):**
+```bash
+STORYBOOK_PORT=6006
+NODE_ENV=development
+VITE_API_URL=http://localhost:3000
+```
+
+**Production (CI/CD):**
+```bash
+export NODE_ENV=production
+export VITE_API_URL=https://api.production.com
+```
+
+## API Endpoints
+
+The design system includes health check capabilities and monitoring endpoints:
+
+### Health Check Endpoints
+
+| Endpoint | Method | Description | Response |
+|----------|--------|-------------|----------|
+| `/` | GET | Main health check for Storybook | `200 OK` with Storybook interface |
+| `/health` | GET | Health status endpoint | `{ "status": "healthy", "timestamp": "ISO-8601" }` |
+
+### Monitoring Endpoints
+
+| Endpoint | Method | Description | Response |
+|----------|--------|-------------|----------|
+| `/metrics` | GET | Prometheus metrics (if enabled) | Prometheus format metrics |
+
+### Example Health Check Usage
+
+```bash
+# Check if the design system is running
+curl -f http://localhost:6006/
+
+# Health check script
+curl -f http://localhost:6006/health || exit 1
+
+# Run example health server
+npm run example:health-server
+```
+
+### Integration with Load Balancers
+
+For production deployments, use the health check endpoints for:
+- **Kubernetes liveness probes**: `GET /`
+- **Kubernetes readiness probes**: `GET /health` 
+- **Load balancer health checks**: `GET /health`
+
+## Examples
+
+The package includes practical examples in the `examples/` directory:
+
+- **`examples/health-server.js`**: Standalone health check server implementation
+  ```bash
+  npm run example:health-server
+  # Visit http://localhost:3000/health for JSON health status
+  ```
+
 ## API Reference
 
 ### Button Props

@@ -1,10 +1,25 @@
 {
   "name": "@fanno/design-system",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "!dist/**/__tests__/**",
+    "!dist/**/*.test.*",
+    "!dist/**/*.stories.*",
+    "examples/**/*",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc --project design-system/tsconfig.json",
@@ -14,8 +29,12 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:legacy": "node design-system/test/index.js",
+    "test:smoke": "node tests/smoke/smoke-test.js",
     "storybook": "storybook dev -p 6006 --config-dir design-system/.storybook",
-    "build-storybook": "storybook build --config-dir design-system/.storybook"
+    "build-storybook": "storybook build --config-dir design-system/.storybook",
+    "serve": "npx http-server storybook-static -p 6006",
+    "health": "curl -f http://localhost:6006/ || exit 1",
+    "example:health-server": "node examples/health-server.js"
   },
   "peerDependencies": {
     "react": "^18.0.0",
