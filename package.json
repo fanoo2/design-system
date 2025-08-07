@@ -17,6 +17,7 @@
     "!dist/**/__tests__/**",
     "!dist/**/*.test.*",
     "!dist/**/*.stories.*",
+    "examples/**/*",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -32,7 +33,8 @@
     "storybook": "storybook dev -p 6006 --config-dir design-system/.storybook",
     "build-storybook": "storybook build --config-dir design-system/.storybook",
     "serve": "npx http-server storybook-static -p 6006",
-    "health": "curl -f http://localhost:6006/ || exit 1"
+    "health": "curl -f http://localhost:6006/ || exit 1",
+    "example:health-server": "node examples/health-server.js"
   },
   "peerDependencies": {
     "react": "^18.0.0",

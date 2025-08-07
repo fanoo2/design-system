@@ -110,6 +110,9 @@ curl -f http://localhost:6006/
 
 # Health check script
 curl -f http://localhost:6006/health || exit 1
+
+# Run example health server
+npm run example:health-server
 ```
 
 ### Integration with Load Balancers
@@ -118,6 +121,16 @@ For production deployments, use the health check endpoints for:
 - **Kubernetes liveness probes**: `GET /`
 - **Kubernetes readiness probes**: `GET /health` 
 - **Load balancer health checks**: `GET /health`
+
+## Examples
+
+The package includes practical examples in the `examples/` directory:
+
+- **`examples/health-server.js`**: Standalone health check server implementation
+  ```bash
+  npm run example:health-server
+  # Visit http://localhost:3000/health for JSON health status
+  ```
 
 ## API Reference
 
